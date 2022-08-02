@@ -33,6 +33,7 @@ class RandomChar extends Component {
 			.then(this.onCharLoaded)
 			.catch(this.onError)
 	}
+
 	render() {
 		const { loading, char, error } = this.state;
 		const errorMessage = error ? <ErrorMessage></ErrorMessage> : null;
@@ -65,11 +66,12 @@ class RandomChar extends Component {
 
 const View = ({ char }) => {
 	const { name, description, thumbnail, homepage, wiki } = char;
+	const isAvaliable = thumbnail.includes('not_available') ? 'randomchar__img unavaliable': 'randomchar__img';
 
 
 	return (
 		<div className="randomchar__block">
-			<img src={thumbnail} alt="Random character" className="randomchar__img" />
+			<img  src={thumbnail} alt="Random character" className={isAvaliable} />
 			<div className="randomchar__info">
 				<p className="randomchar__name">{name}</p>
 				<p className="randomchar__descr">
