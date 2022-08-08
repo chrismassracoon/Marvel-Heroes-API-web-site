@@ -1,5 +1,4 @@
 import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
 import { Component } from 'react/cjs/react.development';
 import MarvelService from '../services/MarvelService';
 import ErrorMessage from '../errorMessage/errorMessage';
@@ -18,9 +17,9 @@ class CharInfo extends Component {
 	componentDidMount() {
 		this.updateChar();
 	}
-	
+
 	componentDidUpdate(prevProps, prevState) {
-		if(this.props.charId !== prevProps.charId){
+		if (this.props.charId !== prevProps.charId) {
 			this.updateChar();
 		}
 
@@ -70,10 +69,10 @@ class CharInfo extends Component {
 }
 
 const View = ({ char }) => {
-	const {name, description, thumbnail, homepage, wiki, comics} = char;
-	let imgStyle = {'objectFit' : 'cover'};
+	const { name, description, thumbnail, homepage, wiki, comics } = char;
+	let imgStyle = { 'objectFit': 'cover' };
 	if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-		 imgStyle = {'objectFit' : 'unset'};
+		imgStyle = { 'objectFit': 'unset' };
 	}
 	return (
 		<>
@@ -98,21 +97,20 @@ const View = ({ char }) => {
 			<ul className="char__comics-list">
 				{
 					comics.map((item, i) => {
-						if(i <= 10){
-						return (
-							<li key={i} className="char__comics-item">
-							{item.name}
-							</li>
-						)
+						if (i <= 10) {
+							return (
+								<li key={i} className="char__comics-item">
+									{item.name}
+								</li>
+							)
 						} else {
-							return 
+							return
 						}
-						
+
 					})
 				}
 			</ul>
 		</>
 	)
 }
-
 export default CharInfo;

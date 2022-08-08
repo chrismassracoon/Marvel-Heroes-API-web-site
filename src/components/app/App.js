@@ -6,20 +6,15 @@ import CharInfo from "../charInfo/CharInfo";
 import decoration from '../../resources/img/vision.png';
 import { Component } from "react/cjs/react.production.min";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import { useState } from "react";
 
-class App extends Component {
-	state = {
-		selectedChar : null,
+const App = () => {
+	const	[selectedChar, setSelectedChar] = useState(null);
+
+
+	const onCharSelected = (id) => {
+		setSelectedChar(id);
 	}
-
-
-	onCharSelected = (id) => {
-		this.setState({
-			selectedChar: id
-		})
-	}
-
-	render() {
     return (
         <div className="app">
             <AppHeader/>
@@ -29,17 +24,16 @@ class App extends Component {
 					 </ErrorBoundary>
                 <div className="char__content">
 					 <ErrorBoundary>
-                    <CharList onCharSelected={this.onCharSelected}/>
+                    <CharList onCharSelected={onCharSelected}/>
 						  </ErrorBoundary>
 						  <ErrorBoundary>
-                    <CharInfo charId={this.state.selectedChar}/>
+                    <CharInfo charId={selectedChar}/>
 						  </ErrorBoundary>
                 </div>
                 <img className="bg-decoration" src={decoration} alt="vision"/>
             </main>
         </div>
     )
-}
 }
 
 export default App;
