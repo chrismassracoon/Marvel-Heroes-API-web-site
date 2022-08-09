@@ -7,6 +7,7 @@ import decoration from '../../resources/img/vision.png';
 import { Component } from "react/cjs/react.production.min";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 import { useState } from "react";
+import ComicsList from '../comicsList/ComicsList'
 
 const App = () => {
 	const	[selectedChar, setSelectedChar] = useState(null);
@@ -32,6 +33,7 @@ const App = () => {
                 </div>
                 <img className="bg-decoration" src={decoration} alt="vision"/>
             </main>
+				<ComicsList></ComicsList>
         </div>
     )
 }
