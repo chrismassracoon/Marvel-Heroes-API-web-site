@@ -10,20 +10,25 @@ import { useState } from "react";
 import ComicsList from '../comicsList/ComicsList'
 
 const App = () => {
+	const [renderProp, setRenderProp] = useState('comics');
 	const	[selectedChar, setSelectedChar] = useState(null);
 
+	const onChangeRender = (prop) => {
+		setRenderProp(prop);
+	}
 
 	const onCharSelected = (id) => {
 		setSelectedChar(id);
 	}
     return (
         <div className="app">
-            <AppHeader/>
+            <AppHeader renderProp={renderProp} onChangeRender={onChangeRender}/>
             <main>
 					<ErrorBoundary>
                 <RandomChar/>
 					 </ErrorBoundary>
-                <div className="char__content">
+					 {renderProp == 'comics' ? <ComicsList></ComicsList> : <>
+					 <div className="char__content">
 					 <ErrorBoundary>
                     <CharList onCharSelected={onCharSelected}/>
 						  </ErrorBoundary>
@@ -32,8 +37,8 @@ const App = () => {
 						  </ErrorBoundary>
                 </div>
                 <img className="bg-decoration" src={decoration} alt="vision"/>
+					 </>}
             </main>
-				<ComicsList></ComicsList>
         </div>
     )
 }
