@@ -5,6 +5,7 @@ import ErrorMessage from '../errorMessage/errorMessage';
 import Spinner from '../spinner/Spinner';
 import Skeleton from '../skeleton/Skeleton'
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const CharInfo = (props) => {
 	const [char, setChar] = useState(null);
@@ -50,7 +51,7 @@ const CharInfo = (props) => {
 }
 
 const View = ({ char }) => {
-	const { name, description, thumbnail, homepage, wiki, comics } = char;
+	const { name, description, thumbnail, homepage, wiki, comics, comicsId } = char;
 	let imgStyle = { 'objectFit': 'cover' };
 	if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
 		imgStyle = { 'objectFit': 'unset' };
@@ -81,7 +82,7 @@ const View = ({ char }) => {
 						if (i <= 10) {
 							return (
 								<li key={i} className="char__comics-item">
-									{item.name}
+									<Link to={`/comics/${item.resourceURI.match(/\d+$/)}`}>{item.name} </Link>
 								</li>
 							)
 						} else {
