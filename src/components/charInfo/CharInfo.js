@@ -1,5 +1,4 @@
 import './charInfo.scss';
-import { Component } from 'react/cjs/react.development';
 import MarvelService from '../services/MarvelService';
 import ErrorMessage from '../errorMessage/errorMessage';
 import Spinner from '../spinner/Spinner';
@@ -7,7 +6,6 @@ import Skeleton from '../skeleton/Skeleton'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field} from 'formik';
-import * as Yup from 'yup';
 
 const CharInfo = (props) => {
 	const [char, setChar] = useState(null);
